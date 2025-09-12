@@ -1,0 +1,1 @@
+# wp-img-optimizer
