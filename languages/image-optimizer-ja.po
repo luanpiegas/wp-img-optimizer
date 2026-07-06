@@ -1,0 +1,274 @@
+# Translation of Advanced Image Optimizer in Japanese
+# Copyright (C) 2026 the Advanced Image Optimizer author
+# This file is distributed under the same license as the Advanced Image Optimizer package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Advanced Image Optimizer 2.1.0\n"
+"Report-Msgid-Bugs-To: https://seusite.com\n"
+"POT-Creation-Date: 2026-07-06 01:33-0300\n"
+"PO-Revision-Date: 2026-07-06 01:33-0300\n"
+"Last-Translator: Plugin Author\n"
+"Language-Team: Japanese\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: wp_image_optimizer.php:92
+msgid "Optimization is already in progress!"
+msgstr "最適化は既に進行中です！"
+
+#: wp_image_optimizer.php:93
+msgid "Optimizing..."
+msgstr "最適化中..."
+
+#: wp_image_optimizer.php:94
+msgid "Starting..."
+msgstr "開始中..."
+
+#: wp_image_optimizer.php:95
+msgid "Found %d images to optimize."
+msgstr "最適化する画像が%d件見つかりました。"
+
+#: wp_image_optimizer.php:96
+msgid "No images found to optimize."
+msgstr "最適化する画像が見つかりませんでした。"
+
+#: wp_image_optimizer.php:97
+msgid "Error starting optimization. Check the browser console."
+msgstr "最適化の開始中にエラーが発生しました。ブラウザのコンソールを確認してください。"
+
+#: wp_image_optimizer.php:98
+msgid "Batch optimization completed successfully!"
+msgstr "一括最適化が正常に完了しました！"
+
+#: wp_image_optimizer.php:99
+msgid "Batch optimization completed with errors."
+msgstr "一括最適化はエラーで完了しました。"
+
+#: wp_image_optimizer.php:100
+msgid "A communication error occurred with the server. Optimization was interrupted."
+msgstr "サーバーとの通信エラーが発生しました。最適化は中断されました。"
+
+#: wp_image_optimizer.php:101
+msgid "🚀 Start Bulk Optimization"
+msgstr "🚀 一括最適化を開始"
+
+#: wp_image_optimizer.php:102
+msgid "Optimized:"
+msgstr "最適化済み:"
+
+#: wp_image_optimizer.php:103
+msgid "Remaining:"
+msgstr "残り:"
+
+#: wp_image_optimizer.php:104
+msgid "Error optimizing:"
+msgstr "最適化エラー:"
+
+#: wp_image_optimizer.php:105
+msgid "Unknown error."
+msgstr "不明なエラー。"
+
+#: wp_image_optimizer.php:166
+msgid "GD extension not found"
+msgstr "GD拡張機能が見つかりません"
+
+#: wp_image_optimizer.php:174
+msgid "Insufficient memory: %s"
+msgstr "メモリ不足: %s"
+
+#: wp_image_optimizer.php:230
+msgid "Rate limit reached for user %d"
+msgstr "ユーザー%dのレート制限に達しました"
+
+#: wp_image_optimizer.php:245
+msgid "Invalid file: %s"
+msgstr "無効なファイル: %s"
+
+#: wp_image_optimizer.php:433
+msgid "Image optimized: %1$s - %2$s%% reduction (%3$s saved)"
+msgstr "画像を最適化: %1$s - %2$s%%縮小 (%3$s節約)"
+
+#: wp_image_optimizer.php:534
+msgid "Advanced Image Optimizer"
+msgstr "高度な画像最適化"
+
+#: wp_image_optimizer.php:535
+msgid "Image Optimizer"
+msgstr "画像最適化"
+
+#: wp_image_optimizer.php:590
+msgid "Settings saved successfully!"
+msgstr "設定が正常に保存されました！"
+
+#: wp_image_optimizer.php:604
+msgid "Statistics have been reset!"
+msgstr "統計をリセットしました！"
+
+#: wp_image_optimizer.php:616
+msgid "Statistics"
+msgstr "統計"
+
+#: wp_image_optimizer.php:617
+msgid "Total images optimized:"
+msgstr "最適化された画像の合計:"
+
+#: wp_image_optimizer.php:618
+msgid "Space saved:"
+msgstr "節約された容量:"
+
+#: wp_image_optimizer.php:619
+msgid "Last update:"
+msgstr "最終更新:"
+
+#: wp_image_optimizer.php:623
+msgid "Are you sure you want to reset the statistics?"
+msgstr "統計をリセットしてもよろしいですか？"
+
+#: wp_image_optimizer.php:624
+msgid "Reset Statistics"
+msgstr "統計をリセット"
+
+#: wp_image_optimizer.php:634
+msgid "Quality (%)"
+msgstr "品質 (%)"
+
+#: wp_image_optimizer.php:637
+msgid "Compression quality (1-100). Lower value = higher compression."
+msgstr "圧縮品質 (1-100)。低い値 = 高い圧縮率。"
+
+#: wp_image_optimizer.php:642
+msgid "Enable Resizing"
+msgstr "リサイズを有効化"
+
+#: wp_image_optimizer.php:645
+msgid "Resize images automatically"
+msgstr "画像を自動的にリサイズ"
+
+#: wp_image_optimizer.php:648
+msgid "If checked, images will be resized according to the maximum dimensions."
+msgstr "チェックすると、画像は最大寸法に合わせてリサイズされます。"
+
+#: wp_image_optimizer.php:653
+msgid "Maximum Width (px)"
+msgstr "最大幅 (px)"
+
+#: wp_image_optimizer.php:656
+msgid "Maximum width in pixels (100-8000)."
+msgstr "最大幅（ピクセル）(100-8000)。"
+
+#: wp_image_optimizer.php:661
+msgid "Maximum Height (px)"
+msgstr "最大高 (px)"
+
+#: wp_image_optimizer.php:664
+msgid "Maximum height in pixels (100-8000)."
+msgstr "最大高（ピクセル）(100-8000)。"
+
+#: wp_image_optimizer.php:669
+msgid "Create Backup"
+msgstr "バックアップを作成"
+
+#: wp_image_optimizer.php:672
+msgid "Create backup of original images"
+msgstr "元の画像のバックアップを作成"
+
+#: wp_image_optimizer.php:675
+msgid "Saves a copy of the original image before optimization."
+msgstr "最適化前に元の画像のコピーを保存します。"
+
+#: wp_image_optimizer.php:680
+msgid "Generate WebP"
+msgstr "WebPを生成"
+
+#: wp_image_optimizer.php:683
+msgid "Generate WebP versions of images"
+msgstr "画像のWebPバージョンを生成"
+
+#: wp_image_optimizer.php:687
+msgid "imagewebp() function not available on the server."
+msgstr "imagewebp()関数がサーバーで利用できません。"
+
+#: wp_image_optimizer.php:689
+msgid "Creates optimized WebP versions for modern browsers."
+msgstr "最新ブラウザ向けに最適化されたWebPバージョンを作成します。"
+
+#: wp_image_optimizer.php:695
+msgid "Serve WebP Images"
+msgstr "WebP画像を配信"
+
+#: wp_image_optimizer.php:698
+msgid "Serve WebP images automatically"
+msgstr "WebP画像を自動的に配信"
+
+#: wp_image_optimizer.php:701
+msgid "If enabled, the plugin will modify the page HTML to serve .webp versions of images to compatible browsers. Requires the \"Generate WebP\" option to be active."
+msgstr "有効にすると、プラグインはページのHTMLを変更し、互換性のあるブラウザに.webp版の画像を配信します。「WebPを生成」オプションが有効になっている必要があります。"
+
+#: wp_image_optimizer.php:706
+msgid "Asynchronous Processing"
+msgstr "非同期処理"
+
+#: wp_image_optimizer.php:709
+msgid "Process images in the background"
+msgstr "画像をバックグラウンドで処理"
+
+#: wp_image_optimizer.php:712
+msgid "Optimizes images using WP Cron to avoid blocking uploads."
+msgstr "WP Cronを使用して画像を最適化し、アップロードをブロックしません。"
+
+#: wp_image_optimizer.php:717
+msgid "Optimize Thumbnails"
+msgstr "サムネイルを最適化"
+
+#: wp_image_optimizer.php:720
+msgid "Optimize thumbnails generated by WordPress"
+msgstr "WordPressが生成したサムネイルを最適化"
+
+#: wp_image_optimizer.php:723
+msgid "Applies optimization to automatically created thumbnails as well."
+msgstr "自動作成されたサムネイルにも最適化を適用します。"
+
+#: wp_image_optimizer.php:728
+msgid "💾 Save Settings"
+msgstr "💾 設定を保存"
+
+#: wp_image_optimizer.php:734
+msgid "Optimize Existing Images"
+msgstr "既存の画像を最適化"
+
+#: wp_image_optimizer.php:735
+msgid "Click the button below to optimize all images already existing in the media library."
+msgstr "以下のボタンをクリックして、メディアライブラリに既存するすべての画像を最適化します。"
+
+#: wp_image_optimizer.php:737
+msgid "Start Bulk Optimization"
+msgstr "一括最適化を開始"
+
+#: wp_image_optimizer.php:740
+msgid "Optimizing images..."
+msgstr "画像を最適化中..."
+
+#: wp_image_optimizer.php:748
+msgid "Recent Logs"
+msgstr "最近のログ"
+
+#: wp_image_optimizer.php:983
+msgid "None"
+msgstr "なし"
+
+#: wp_image_optimizer.php:875
+msgid "Permission denied."
+msgstr "権限が拒否されました。"
+
+#: wp_image_optimizer.php:883
+msgid "No images found."
+msgstr "画像が見つかりません。"
+
+#: wp_image_optimizer.php:998
+msgid "File not found for ID: %d"
+msgstr "IDのファイルが見つかりません: %d"
+

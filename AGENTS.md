@@ -7,10 +7,18 @@ Single-file WordPress plugin (`wp_image_optimizer.php`, ~1000 lines). No build s
 - PHP >= 7.4 with the **GD** extension. WebP generation additionally needs `imagewebp()` (GD compiled with WebP support).
 - Async mode uses **WP-Cron** (`wp_schedule_single_event` on the `optimize_image_async` hook). If WP-Cron is disabled on the site, async optimization silently never runs.
 
+## Internationalization (i18n)
+- Source strings are **English**, wrapped in gettext calls (`__()`, `esc_html__()`, `esc_html_e()`, `esc_js__()`, `sprintf()`). Text domain: `image-optimizer`.
+- `load_plugin_textdomain('image-optimizer', false, dirname(plugin_basename(__FILE__)) . '/languages/')` runs on the `plugins_loaded` hook. Translation `.mo` files must live in `languages/` and be named `image-optimizer-<locale>.mo` (e.g. `image-optimizer-pt_BR.mo`).
+- Available locales: `pt_BR`, `es_ES`, `ja`, `fr_FR`, `ru_RU`, `de_DE`. The `.pot` template is `languages/image-optimizer.pot`.
+- JS strings are **not** gettext-able inline; they are passed from PHP via `wp_localize_script` under `imgOptimizer.i18n` (see `enqueue_admin_scripts`). When adding JS user-facing strings, add them to that array and reference as `imgOptimizer.i18n.<key>` — do **not** hardcode translatable text in the `<script>` block.
+- Code comments remain in **Portuguese (pt-BR)** by convention; do not translate them.
+- Regenerating translation files: `xgettext` is available locally; `msgfmt` compiles `.po` → `.mo`. There is no WP-CLI/i18n toolchain configured — regenerate manually when strings change.
+
 ## Working in this repo
 - All logic is in the `ImageOptimizerAdvanced` singleton class; the instance is created at the bottom of `wp_image_optimizer.php` via `get_instance()`.
-- Comments, log messages, and admin UI strings are in **Portuguese (pt-BR)**; match this when editing. Text domain: `image-optimizer`.
-- Do **not** invent commands — there is no `npm`, `composer`, `phpunit`, or `phpcs` workflow. Verify changes by activating the plugin in a WordPress admin and checking Settings → "Otimizador de Imagens".
+- Do **not** invent commands — there is no `npm`, `composer`, `phpunit`, or `phpcs` workflow. Verify changes by activating the plugin in a WordPress admin and checking Settings → "Image Optimizer" (the menu label is itself translatable).
+- Verify PHP syntax with `php -l wp_image_optimizer.php` (PHP 8.x CLI is available on this machine).
 
 ## Non-obvious behavior worth preserving
 - **Dedup by hash**: optimized files are tracked by `md5_file()` in the `img_optimizer_processed` option (capped at 1000 entries). Re-running optimization on an unchanged file is a silent no-op; changing settings does **not** force re-optimization.

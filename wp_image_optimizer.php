@@ -1,13 +1,13 @@
 <?php
-
 /**
- * Plugin Name: Otimizador de Imagens Avançado
+ * Plugin Name: Advanced Image Optimizer
  * Plugin URI: https://seusite.com
- * Description: Otimizador profissional de imagens PNG, JPG e WebP com funcionalidades avançadas
- * Version: 2.0.0
+ * Description: Professional PNG, JPG and WebP image optimizer with advanced features
+ * Version: 2.1.0
  * Author: Seu Nome
  * License: GPL v2 or later
  * Text Domain: image-optimizer
+ * Domain Path: /languages
  * Requires PHP: 7.4
  */
 
@@ -45,6 +45,7 @@ class ImageOptimizerAdvanced
      */
     private function init_hooks()
     {
+        add_action('plugins_loaded', array($this, 'load_textdomain'));
         add_action('wp_handle_upload', array($this, 'optimize_uploaded_image'), 10, 2);
         add_filter('wp_generate_attachment_metadata', array($this, 'optimize_thumbnails'));
         add_action('admin_menu', array($this, 'add_admin_menu'));
@@ -64,6 +65,18 @@ class ImageOptimizerAdvanced
     }
 
     /**
+     * Carrega o domínio de tradução do plugin
+     */
+    public function load_textdomain()
+    {
+        load_plugin_textdomain(
+            'image-optimizer',
+            false,
+            dirname(plugin_basename(__FILE__)) . '/languages/'
+        );
+    }
+
+    /**
      * Enfileira scripts do admin
      */
     public function enqueue_admin_scripts($hook)
@@ -74,7 +87,23 @@ class ImageOptimizerAdvanced
             wp_enqueue_script('image-optimizer-admin');
             wp_localize_script('image-optimizer-admin', 'imgOptimizer', array(
                 'ajax_url' => admin_url('admin-ajax.php'),
-                'nonce' => wp_create_nonce('img_optimizer_ajax_nonce')
+                'nonce'    => wp_create_nonce('img_optimizer_ajax_nonce'),
+                'i18n'     => array(
+                    'in_progress'       => __('Optimization is already in progress!', 'image-optimizer'),
+                    'optimizing'        => __('Optimizing...', 'image-optimizer'),
+                    'starting'          => __('Starting...', 'image-optimizer'),
+                    'found_images'      => __('Found %d images to optimize.', 'image-optimizer'),
+                    'no_images'         => __('No images found to optimize.', 'image-optimizer'),
+                    'start_error'       => __('Error starting optimization. Check the browser console.', 'image-optimizer'),
+                    'batch_done'        => __('Batch optimization completed successfully!', 'image-optimizer'),
+                    'batch_done_errors' => __('Batch optimization completed with errors.', 'image-optimizer'),
+                    'comm_error'        => __('A communication error occurred with the server. Optimization was interrupted.', 'image-optimizer'),
+                    'start_button'      => __('🚀 Start Bulk Optimization', 'image-optimizer'),
+                    'optimized_label'   => __('Optimized:', 'image-optimizer'),
+                    'remaining_label'   => __('Remaining:', 'image-optimizer'),
+                    'optimize_error'    => __('Error optimizing:', 'image-optimizer'),
+                    'unknown_error'     => __('Unknown error.', 'image-optimizer'),
+                ),
             ));
         }
     }
@@ -163,7 +192,7 @@ class ImageOptimizerAdvanced
     private function check_system_requirements()
     {
         if (!extension_loaded('gd')) {
-            $this->log_message('Extensão GD não encontrada', 'error');
+            $this->log_message(__('GD extension not found', 'image-optimizer'), 'error');
             return false;
         }
 
@@ -171,7 +200,7 @@ class ImageOptimizerAdvanced
         $memory_bytes = $this->convert_to_bytes($memory_limit);
 
         if ($memory_bytes < 128 * 1024 * 1024) { // 128MB mínimo
-            $this->log_message('Memória insuficiente: ' . $memory_limit, 'warning');
+            $this->log_message(sprintf(__('Insufficient memory: %s', 'image-optimizer'), $memory_limit), 'warning');
         }
 
         return true;
@@ -227,7 +256,7 @@ class ImageOptimizerAdvanced
         }
 
         if (!$this->check_rate_limit()) {
-            $this->log_message('Rate limit atingido para usuário ' . get_current_user_id(), 'warning');
+            $this->log_message(sprintf(__('Rate limit reached for user %d', 'image-optimizer'), get_current_user_id()), 'warning');
             return $upload;
         }
 
@@ -242,7 +271,7 @@ class ImageOptimizerAdvanced
         // Validação rigorosa do arquivo
         $image_info = getimagesize($file_path);
         if ($image_info === false) {
-            $this->log_message('Arquivo inválido: ' . $file_path, 'error');
+            $this->log_message(sprintf(__('Invalid file: %s', 'image-optimizer'), $file_path), 'error');
             return $upload;
         }
 
@@ -430,7 +459,7 @@ class ImageOptimizerAdvanced
 
             if ($log) {
                 $reduction = round(($bytes_saved / $original_size) * 100, 2);
-                $this->log_message("Imagem otimizada: {$file_path} - {$reduction}% de redução (" . $this->format_bytes($bytes_saved) . " economizados)", 'success');
+                $this->log_message(sprintf(__('Image optimized: %1$s - %2$s%% reduction (%3$s saved)', 'image-optimizer'), $file_path, $reduction, $this->format_bytes($bytes_saved)), 'success');
             }
         }
 
@@ -531,8 +560,8 @@ class ImageOptimizerAdvanced
     public function add_admin_menu()
     {
         add_options_page(
-            'Otimizador de Imagens Avançado',
-            'Otimizador de Imagens',
+            __('Advanced Image Optimizer', 'image-optimizer'),
+            __('Image Optimizer', 'image-optimizer'),
             'manage_options',
             'image-optimizer',
             array($this, 'options_page')
@@ -587,7 +616,7 @@ class ImageOptimizerAdvanced
             // Limpa cache de configurações
             $this->settings_cache = null;
 
-            echo '<div class="notice notice-success"><p>Configurações salvas com sucesso!</p></div>';
+            echo '<div class="notice notice-success"><p>' . esc_html__('Settings saved successfully!', 'image-optimizer') . '</p></div>';
         }
 
         // Reset de estatísticas
@@ -601,7 +630,7 @@ class ImageOptimizerAdvanced
             ));
 
             $this->stats_cache = null;
-            echo '<div class="notice notice-info"><p>Estatísticas resetadas!</p></div>';
+            echo '<div class="notice notice-info"><p>' . esc_html__('Statistics have been reset!', 'image-optimizer') . '</p></div>';
         }
 
         // Obtém valores atuais
@@ -610,18 +639,18 @@ class ImageOptimizerAdvanced
         $logs = array_slice(get_option('img_optimizer_logs', array()), -10); // Últimos 10 logs
 ?>
         <div class="wrap">
-            <h1>🚀 Otimizador de Imagens Avançado</h1>
+            <h1>🚀 <?php esc_html_e('Advanced Image Optimizer', 'image-optimizer'); ?></h1>
 
             <div class="card" style="margin-bottom: 20px;">
-                <h2>📊 Estatísticas</h2>
-                <p><strong>Total de imagens otimizadas:</strong> <?php echo number_format($stats['total_optimized']); ?></p>
-                <p><strong>Espaço economizado:</strong> <?php echo $this->format_bytes($stats['bytes_saved']); ?></p>
-                <p><strong>Última atualização:</strong> <?php echo date('d/m/Y H:i:s', $stats['last_reset']); ?></p>
+                <h2>📊 <?php esc_html_e('Statistics', 'image-optimizer'); ?></h2>
+                <p><strong><?php esc_html_e('Total images optimized:', 'image-optimizer'); ?></strong> <?php echo number_format($stats['total_optimized']); ?></p>
+                <p><strong><?php esc_html_e('Space saved:', 'image-optimizer'); ?></strong> <?php echo esc_html($this->format_bytes($stats['bytes_saved'])); ?></p>
+                <p><strong><?php esc_html_e('Last update:', 'image-optimizer'); ?></strong> <?php echo esc_html(date('d/m/Y H:i:s', $stats['last_reset'])); ?></p>
 
                 <form method="post" style="display: inline;">
                     <?php wp_nonce_field('img_optimizer_reset_stats'); ?>
-                    <button type="submit" name="reset_stats" class="button" onclick="return confirm('Tem certeza que deseja resetar as estatísticas?')">
-                        Resetar Estatísticas
+                    <button type="submit" name="reset_stats" class="button" onclick="return confirm('<?php echo esc_js(__('Are you sure you want to reset the statistics?', 'image-optimizer')); ?>')">
+                        <?php esc_html_e('Reset Statistics', 'image-optimizer'); ?>
                     </button>
                 </form>
             </div>
@@ -631,113 +660,113 @@ class ImageOptimizerAdvanced
 
                 <table class="form-table">
                     <tr>
-                        <th scope="row">🎛️ Qualidade (%)</th>
+                        <th scope="row">🎛️ <?php esc_html_e('Quality (%)', 'image-optimizer'); ?></th>
                         <td>
                             <input type="number" name="img_optimizer_quality" value="<?php echo esc_attr($settings['quality']); ?>" min="1" max="100" />
-                            <p class="description">Qualidade da compressão (1-100). Menor valor = maior compressão.</p>
+                            <p class="description"><?php esc_html_e('Compression quality (1-100). Lower value = higher compression.', 'image-optimizer'); ?></p>
                         </td>
                     </tr>
 
                     <tr>
-                        <th scope="row">📐 Habilitar Redimensionamento</th>
+                        <th scope="row">📐 <?php esc_html_e('Enable Resizing', 'image-optimizer'); ?></th>
                         <td>
                             <label for="img_optimizer_enable_resize">
                                 <input type="checkbox" id="img_optimizer_enable_resize" name="img_optimizer_enable_resize" value="1" <?php checked('1', $settings['enable_resize']); ?> />
-                                Redimensionar imagens automaticamente
+                                <?php esc_html_e('Resize images automatically', 'image-optimizer'); ?>
                             </label>
-                            <p class="description">Se marcado, as imagens serão redimensionadas conforme as dimensões máximas.</p>
+                            <p class="description"><?php esc_html_e('If checked, images will be resized according to the maximum dimensions.', 'image-optimizer'); ?></p>
                         </td>
                     </tr>
 
                     <tr>
-                        <th scope="row">📏 Largura Máxima (px)</th>
+                        <th scope="row">📏 <?php esc_html_e('Maximum Width (px)', 'image-optimizer'); ?></th>
                         <td>
                             <input type="number" id="max-width-field" name="img_optimizer_max_width" value="<?php echo esc_attr($settings['max_width']); ?>" min="100" max="8000" />
-                            <p class="description">Largura máxima em pixels (100-8000).</p>
+                            <p class="description"><?php esc_html_e('Maximum width in pixels (100-8000).', 'image-optimizer'); ?></p>
                         </td>
                     </tr>
 
                     <tr>
-                        <th scope="row">📏 Altura Máxima (px)</th>
+                        <th scope="row">📏 <?php esc_html_e('Maximum Height (px)', 'image-optimizer'); ?></th>
                         <td>
                             <input type="number" id="max-height-field" name="img_optimizer_max_height" value="<?php echo esc_attr($settings['max_height']); ?>" min="100" max="8000" />
-                            <p class="description">Altura máxima em pixels (100-8000).</p>
+                            <p class="description"><?php esc_html_e('Maximum height in pixels (100-8000).', 'image-optimizer'); ?></p>
                         </td>
                     </tr>
 
                     <tr>
-                        <th scope="row">💾 Criar Backup</th>
+                        <th scope="row">💾 <?php esc_html_e('Create Backup', 'image-optimizer'); ?></th>
                         <td>
                             <label for="img_optimizer_backup">
                                 <input type="checkbox" id="img_optimizer_backup" name="img_optimizer_backup" value="1" <?php checked('1', $settings['backup']); ?> />
-                                Criar backup das imagens originais
+                                <?php esc_html_e('Create backup of original images', 'image-optimizer'); ?>
                             </label>
-                            <p class="description">Salva uma cópia da imagem original antes da otimização.</p>
+                            <p class="description"><?php esc_html_e('Saves a copy of the original image before optimization.', 'image-optimizer'); ?></p>
                         </td>
                     </tr>
 
                     <tr>
-                        <th scope="row">🌐 Gerar WebP</th>
+                        <th scope="row">🌐 <?php esc_html_e('Generate WebP', 'image-optimizer'); ?></th>
                         <td>
                             <label for="img_optimizer_webp">
                                 <input type="checkbox" id="img_optimizer_webp" name="img_optimizer_webp" value="1" <?php checked('1', $settings['webp']); ?> <?php if (!function_exists('imagewebp')) echo 'disabled'; ?> />
-                                Gerar versões WebP das imagens
+                                <?php esc_html_e('Generate WebP versions of images', 'image-optimizer'); ?>
                             </label>
                             <?php if (!function_exists('imagewebp')): ?>
-                                <p class="description" style="color: red;">⚠️ Função imagewebp() não disponível no servidor.</p>
+                                <p class="description" style="color: red;">⚠️ <?php esc_html_e('imagewebp() function not available on the server.', 'image-optimizer'); ?></p>
                             <?php else: ?>
-                                <p class="description">Cria versões WebP otimizadas para browsers modernos.</p>
+                                <p class="description"><?php esc_html_e('Creates optimized WebP versions for modern browsers.', 'image-optimizer'); ?></p>
                             <?php endif; ?>
                         </td>
                     </tr>
 
                     <tr>
-                        <th scope="row">🚀 Servir Imagens WebP</th>
+                        <th scope="row">🚀 <?php esc_html_e('Serve WebP Images', 'image-optimizer'); ?></th>
                         <td>
                             <label for="img_optimizer_serve_webp">
                                 <input type="checkbox" id="img_optimizer_serve_webp" name="img_optimizer_serve_webp" value="1" <?php checked('1', $settings['serve_webp']); ?> />
-                                Entregar imagens WebP automaticamente
+                                <?php esc_html_e('Serve WebP images automatically', 'image-optimizer'); ?>
                             </label>
-                            <p class="description">Se ativado, o plugin modificará o HTML da página para servir as versões .webp das imagens para navegadores compatíveis. Requer que a opção "Gerar WebP" esteja ativa.</p>
+                            <p class="description"><?php esc_html_e('If enabled, the plugin will modify the page HTML to serve .webp versions of images to compatible browsers. Requires the "Generate WebP" option to be active.', 'image-optimizer'); ?></p>
                         </td>
                     </tr>
 
                     <tr>
-                        <th scope="row">⚡ Processamento Assíncrono</th>
+                        <th scope="row">⚡ <?php esc_html_e('Asynchronous Processing', 'image-optimizer'); ?></th>
                         <td>
                             <label for="img_optimizer_async">
                                 <input type="checkbox" id="img_optimizer_async" name="img_optimizer_async" value="1" <?php checked('1', $settings['async']); ?> />
-                                Processar imagens em segundo plano
+                                <?php esc_html_e('Process images in the background', 'image-optimizer'); ?>
                             </label>
-                            <p class="description">Otimiza imagens usando WP Cron para não bloquear uploads.</p>
+                            <p class="description"><?php esc_html_e('Optimizes images using WP Cron to avoid blocking uploads.', 'image-optimizer'); ?></p>
                         </td>
                     </tr>
 
                     <tr>
-                        <th scope="row">🖼️ Otimizar Thumbnails</th>
+                        <th scope="row">🖼️ <?php esc_html_e('Optimize Thumbnails', 'image-optimizer'); ?></th>
                         <td>
                             <label for="img_optimizer_thumbnails">
                                 <input type="checkbox" id="img_optimizer_thumbnails" name="img_optimizer_thumbnails" value="1" <?php checked('1', $settings['thumbnails']); ?> />
-                                Otimizar miniaturas geradas pelo WordPress
+                                <?php esc_html_e('Optimize thumbnails generated by WordPress', 'image-optimizer'); ?>
                             </label>
-                            <p class="description">Aplica otimização também nas miniaturas criadas automaticamente.</p>
+                            <p class="description"><?php esc_html_e('Applies optimization to automatically created thumbnails as well.', 'image-optimizer'); ?></p>
                         </td>
                     </tr>
                 </table>
 
-                <?php submit_button('💾 Salvar Configurações'); ?>
+                <?php submit_button(__('💾 Save Settings', 'image-optimizer')); ?>
             </form>
 
             <hr>
 
             <div class="card">
-                <h2>🔄 Otimizar Imagens Existentes</h2>
-                <p>Clique no botão abaixo para otimizar todas as imagens já existentes na biblioteca de mídias.</p>
+                <h2>🔄 <?php esc_html_e('Optimize Existing Images', 'image-optimizer'); ?></h2>
+                <p><?php esc_html_e('Click the button below to optimize all images already existing in the media library.', 'image-optimizer'); ?></p>
                 <button type="button" class="button button-primary" id="optimize-existing">
-                    🚀 Iniciar Otimização em Lote
+                    🚀 <?php esc_html_e('Start Bulk Optimization', 'image-optimizer'); ?>
                 </button>
                 <div id="optimization-progress" style="display:none; margin-top: 15px;">
-                    <p>Otimizando imagens... <span id="progress-text">0%</span></p>
+                    <p><?php esc_html_e('Optimizing images...', 'image-optimizer'); ?> <span id="progress-text">0%</span></p>
                     <progress id="progress-bar" max="100" value="0" style="width: 100%; height: 30px;"></progress>
                     <p id="current-file"></p>
                 </div>
@@ -745,12 +774,12 @@ class ImageOptimizerAdvanced
 
             <?php if (!empty($logs)): ?>
                 <div class="card" style="margin-top: 20px;">
-                    <h2>📝 Logs Recentes</h2>
+                    <h2>📝 <?php esc_html_e('Recent Logs', 'image-optimizer'); ?></h2>
                     <div style="max-height: 300px; overflow-y: auto; background: #f5f5f5; padding: 10px; border-radius: 5px;">
                         <?php foreach (array_reverse($logs) as $log): ?>
                             <div style="margin-bottom: 5px; padding: 5px; border-left: 3px solid <?php echo $log['level'] === 'error' ? '#dc3545' : ($log['level'] === 'warning' ? '#ffc107' : '#28a745'); ?>; background: white;">
-                                <small style="color: #666;"><?php echo $log['timestamp']; ?></small>
-                                <span style="text-transform: uppercase; font-weight: bold; color: <?php echo $log['level'] === 'error' ? '#dc3545' : ($log['level'] === 'warning' ? '#856404' : '#155724'); ?>;">[<?php echo $log['level']; ?>]</span>
+                                <small style="color: #666;"><?php echo esc_html($log['timestamp']); ?></small>
+                                <span style="text-transform: uppercase; font-weight: bold; color: <?php echo $log['level'] === 'error' ? '#dc3545' : ($log['level'] === 'warning' ? '#856404' : '#155724'); ?>;">[<?php echo esc_html($log['level']); ?>]</span>
                                 <?php echo esc_html($log['message']); ?>
                             </div>
                         <?php endforeach; ?>
@@ -761,6 +790,7 @@ class ImageOptimizerAdvanced
             <script>
                 jQuery(document).ready(function($) {
                     let optimizationInProgress = false;
+                    const i18n = imgOptimizer.i18n;
 
                     // Controla a habilitação/desabilitação dos campos de dimensão
                     function toggleDimensionFields() {
@@ -775,17 +805,16 @@ class ImageOptimizerAdvanced
                     // Otimização em lote com progresso real
                     $('#optimize-existing').click(function() {
                         if (optimizationInProgress) {
-                            alert('Otimização já está em andamento!');
+                            alert(i18n.in_progress);
                             return;
                         }
 
                         optimizationInProgress = true;
                         const button = $(this);
-                        button.prop('disabled', true).text('Otimizando...');
+                        button.prop('disabled', true).text(i18n.optimizing);
                         $('#optimization-progress').show();
                         $('#progress-text').text('0%');
-                        $('#progress-bar').val(0);
-                        $('#current-file').text('Iniciando...');
+                        $('#current-file').text(i18n.starting);
 
                         let totalImages = 0;
                         let processedImages = 0;
@@ -798,15 +827,15 @@ class ImageOptimizerAdvanced
                             if (response.success && response.data.total > 0) {
                                 totalImages = response.data.total;
                                 $('#progress-bar').attr('max', totalImages);
-                                $('#current-file').text(`Encontradas ${totalImages} imagens para otimizar.`);
+                                $('#current-file').text(i18n.found_images.replace('%d', totalImages));
                                 // Step 2: Start processing the queue
                                 processQueue();
                             } else {
-                                $('#current-file').text(response.data.message || 'Nenhuma imagem para otimizar encontrada.');
+                                $('#current-file').text(response.data.message || i18n.no_images);
                                 resetUI();
                             }
                         }).fail(function() {
-                            alert('Erro ao iniciar a otimização. Verifique o console do navegador.');
+                            alert(i18n.start_error);
                             resetUI();
                         });
 
@@ -825,36 +854,36 @@ class ImageOptimizerAdvanced
 
                                     $('#progress-bar').val(processedImages);
                                     $('#progress-text').text(Math.round(progress) + '%');
-                                    if (response.data.processed_file !== 'Nenhum') {
-                                        $('#current-file').html(`Otimizado: <strong>${response.data.processed_file}</strong>. Restantes: ${response.data.remaining}`);
+                                    if (response.data.processed_file !== '<?php echo esc_js(__('None', 'image-optimizer')); ?>') {
+                                        $('#current-file').html(i18n.optimized_label + ' <strong>' + response.data.processed_file + '</strong>. ' + i18n.remaining_label + ' ' + response.data.remaining);
                                     }
 
                                     if (response.data.remaining > 0) {
                                         processQueue(); // Process next image
                                     } else {
-                                        $('#current-file').text('Otimização em lote concluída com sucesso!');
+                                        $('#current-file').text(i18n.batch_done);
                                         setTimeout(resetUI, 2000);
                                     }
                                 } else {
                                     // Handle error for a single image and continue
                                     processedImages++; // count it as processed to not get stuck
-                                    $('#current-file').append(`<br/><span style="color:red;">Erro ao otimizar: ${response.data.message || 'Erro desconhecido.'}</span>`);
+                                    $('#current-file').append('<br/><span style="color:red;">' + i18n.optimize_error + ' ' + (response.data.message || i18n.unknown_error) + '</span>');
                                     if (totalImages > processedImages) {
                                         setTimeout(processQueue, 1000); // Wait a bit before continuing
                                     } else {
-                                        $('#current-file').append('<br/>Otimização em lote concluída com erros.');
+                                        $('#current-file').append('<br/>' + i18n.batch_done_errors);
                                         setTimeout(resetUI, 3000);
                                     }
                                 }
                             }).fail(function() {
-                                alert('Ocorreu um erro de comunicação com o servidor. A otimização foi interrompida.');
+                                alert(i18n.comm_error);
                                 resetUI();
                             });
                         }
 
                         function resetUI() {
                             optimizationInProgress = false;
-                            button.prop('disabled', false).text('🚀 Iniciar Otimização em Lote');
+                            button.prop('disabled', false).text(i18n.start_button);
                             $('#optimization-progress').slideUp();
                         }
                     });
@@ -872,7 +901,7 @@ class ImageOptimizerAdvanced
         check_ajax_referer('img_optimizer_ajax_nonce');
 
         if (!current_user_can('manage_options')) {
-            wp_send_json_error(array('message' => 'Permissão negada.'));
+            wp_send_json_error(array('message' => __('Permission denied.', 'image-optimizer')));
         }
 
         global $wpdb;
@@ -880,7 +909,7 @@ class ImageOptimizerAdvanced
         $image_ids = $wpdb->get_col($query);
 
         if (empty($image_ids)) {
-            wp_send_json_success(array('total' => 0, 'message' => 'Nenhuma imagem encontrada.'));
+            wp_send_json_success(array('total' => 0, 'message' => __('No images found.', 'image-optimizer')));
             return;
         }
 
@@ -972,7 +1001,7 @@ class ImageOptimizerAdvanced
         check_ajax_referer('img_optimizer_ajax_nonce');
 
         if (!current_user_can('manage_options')) {
-            wp_send_json_error(array('message' => 'Permissão negada.'));
+            wp_send_json_error(array('message' => __('Permission denied.', 'image-optimizer')));
         }
 
         $transient_key = 'img_opt_batch_queue_' . get_current_user_id();
@@ -980,7 +1009,7 @@ class ImageOptimizerAdvanced
 
         if ($queue === false || empty($queue)) {
             delete_transient($transient_key);
-            wp_send_json_success(array('remaining' => 0, 'processed_file' => 'Nenhum'));
+            wp_send_json_success(array('remaining' => 0, 'processed_file' => __('None', 'image-optimizer')));
             return;
         }
 
@@ -995,7 +1024,7 @@ class ImageOptimizerAdvanced
             // Se o arquivo não existe, apenas continuamos para o próximo
             wp_send_json_success(array(
                 'remaining' => count($queue),
-                'processed_file' => 'Arquivo não encontrado para ID: ' . $image_id
+                'processed_file' => sprintf(__('File not found for ID: %d', 'image-optimizer'), $image_id)
             ));
             return;
         }

@@ -1,0 +1,288 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the Advanced Image Optimizer package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Advanced Image Optimizer 2.1.0\n"
+"Report-Msgid-Bugs-To: https://seusite.com\n"
+"POT-Creation-Date: 2026-07-06 01:33-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: wp_image_optimizer.php:92
+msgid "Optimization is already in progress!"
+msgstr ""
+
+#: wp_image_optimizer.php:93
+msgid "Optimizing..."
+msgstr ""
+
+#: wp_image_optimizer.php:94
+msgid "Starting..."
+msgstr ""
+
+#: wp_image_optimizer.php:95
+#, php-format
+msgid "Found %d images to optimize."
+msgstr ""
+
+#: wp_image_optimizer.php:96
+msgid "No images found to optimize."
+msgstr ""
+
+#: wp_image_optimizer.php:97
+msgid "Error starting optimization. Check the browser console."
+msgstr ""
+
+#: wp_image_optimizer.php:98
+msgid "Batch optimization completed successfully!"
+msgstr ""
+
+#: wp_image_optimizer.php:99
+msgid "Batch optimization completed with errors."
+msgstr ""
+
+#: wp_image_optimizer.php:100
+msgid ""
+"A communication error occurred with the server. Optimization was interrupted."
+msgstr ""
+
+#: wp_image_optimizer.php:101
+msgid "🚀 Start Bulk Optimization"
+msgstr ""
+
+#: wp_image_optimizer.php:102
+msgid "Optimized:"
+msgstr ""
+
+#: wp_image_optimizer.php:103
+msgid "Remaining:"
+msgstr ""
+
+#: wp_image_optimizer.php:104
+msgid "Error optimizing:"
+msgstr ""
+
+#: wp_image_optimizer.php:105
+msgid "Unknown error."
+msgstr ""
+
+#: wp_image_optimizer.php:195
+msgid "GD extension not found"
+msgstr ""
+
+#: wp_image_optimizer.php:203
+#, php-format
+msgid "Insufficient memory: %s"
+msgstr ""
+
+#: wp_image_optimizer.php:259
+#, php-format
+msgid "Rate limit reached for user %d"
+msgstr ""
+
+#: wp_image_optimizer.php:274
+#, php-format
+msgid "Invalid file: %s"
+msgstr ""
+
+#: wp_image_optimizer.php:462
+#, php-format
+msgid "Image optimized: %1$s - %2$s%% reduction (%3$s saved)"
+msgstr ""
+
+#: wp_image_optimizer.php:563 wp_image_optimizer.php:642
+msgid "Advanced Image Optimizer"
+msgstr ""
+
+#: wp_image_optimizer.php:564
+msgid "Image Optimizer"
+msgstr ""
+
+#: wp_image_optimizer.php:619
+msgid "Settings saved successfully!"
+msgstr ""
+
+#: wp_image_optimizer.php:633
+msgid "Statistics have been reset!"
+msgstr ""
+
+#: wp_image_optimizer.php:645
+msgid "Statistics"
+msgstr ""
+
+#: wp_image_optimizer.php:646
+msgid "Total images optimized:"
+msgstr ""
+
+#: wp_image_optimizer.php:647
+msgid "Space saved:"
+msgstr ""
+
+#: wp_image_optimizer.php:648
+msgid "Last update:"
+msgstr ""
+
+#: wp_image_optimizer.php:652
+msgid "Are you sure you want to reset the statistics?"
+msgstr ""
+
+#: wp_image_optimizer.php:653
+msgid "Reset Statistics"
+msgstr ""
+
+#: wp_image_optimizer.php:663
+msgid "Quality (%)"
+msgstr ""
+
+#: wp_image_optimizer.php:666
+msgid "Compression quality (1-100). Lower value = higher compression."
+msgstr ""
+
+#: wp_image_optimizer.php:671
+msgid "Enable Resizing"
+msgstr ""
+
+#: wp_image_optimizer.php:675
+msgid "Resize images automatically"
+msgstr ""
+
+#: wp_image_optimizer.php:677
+msgid "If checked, images will be resized according to the maximum dimensions."
+msgstr ""
+
+#: wp_image_optimizer.php:682
+msgid "Maximum Width (px)"
+msgstr ""
+
+#: wp_image_optimizer.php:685
+msgid "Maximum width in pixels (100-8000)."
+msgstr ""
+
+#: wp_image_optimizer.php:690
+msgid "Maximum Height (px)"
+msgstr ""
+
+#: wp_image_optimizer.php:693
+msgid "Maximum height in pixels (100-8000)."
+msgstr ""
+
+#: wp_image_optimizer.php:698
+msgid "Create Backup"
+msgstr ""
+
+#: wp_image_optimizer.php:702
+msgid "Create backup of original images"
+msgstr ""
+
+#: wp_image_optimizer.php:704
+msgid "Saves a copy of the original image before optimization."
+msgstr ""
+
+#: wp_image_optimizer.php:709
+msgid "Generate WebP"
+msgstr ""
+
+#: wp_image_optimizer.php:713
+msgid "Generate WebP versions of images"
+msgstr ""
+
+#: wp_image_optimizer.php:716
+msgid "imagewebp() function not available on the server."
+msgstr ""
+
+#: wp_image_optimizer.php:718
+msgid "Creates optimized WebP versions for modern browsers."
+msgstr ""
+
+#: wp_image_optimizer.php:724
+msgid "Serve WebP Images"
+msgstr ""
+
+#: wp_image_optimizer.php:728
+msgid "Serve WebP images automatically"
+msgstr ""
+
+#: wp_image_optimizer.php:730
+msgid ""
+"If enabled, the plugin will modify the page HTML to serve .webp versions of "
+"images to compatible browsers. Requires the \"Generate WebP\" option to be "
+"active."
+msgstr ""
+
+#: wp_image_optimizer.php:735
+msgid "Asynchronous Processing"
+msgstr ""
+
+#: wp_image_optimizer.php:739
+msgid "Process images in the background"
+msgstr ""
+
+#: wp_image_optimizer.php:741
+msgid "Optimizes images using WP Cron to avoid blocking uploads."
+msgstr ""
+
+#: wp_image_optimizer.php:746
+msgid "Optimize Thumbnails"
+msgstr ""
+
+#: wp_image_optimizer.php:750
+msgid "Optimize thumbnails generated by WordPress"
+msgstr ""
+
+#: wp_image_optimizer.php:752
+msgid "Applies optimization to automatically created thumbnails as well."
+msgstr ""
+
+#: wp_image_optimizer.php:757
+msgid "💾 Save Settings"
+msgstr ""
+
+#: wp_image_optimizer.php:763
+msgid "Optimize Existing Images"
+msgstr ""
+
+#: wp_image_optimizer.php:764
+msgid ""
+"Click the button below to optimize all images already existing in the media "
+"library."
+msgstr ""
+
+#: wp_image_optimizer.php:766
+msgid "Start Bulk Optimization"
+msgstr ""
+
+#: wp_image_optimizer.php:769
+msgid "Optimizing images..."
+msgstr ""
+
+#: wp_image_optimizer.php:777
+msgid "Recent Logs"
+msgstr ""
+
+#: wp_image_optimizer.php:857 wp_image_optimizer.php:1012
+msgid "None"
+msgstr ""
+
+#: wp_image_optimizer.php:904 wp_image_optimizer.php:1004
+msgid "Permission denied."
+msgstr ""
+
+#: wp_image_optimizer.php:912
+msgid "No images found."
+msgstr ""
+
+#: wp_image_optimizer.php:1027
+#, php-format
+msgid "File not found for ID: %d"
+msgstr ""
