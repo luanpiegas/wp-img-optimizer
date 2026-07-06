@@ -8,15 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Advanced Image Optimizer 2.1.0\n"
 "Report-Msgid-Bugs-To: https://seusite.com\n"
-"POT-Creation-Date: 2026-07-06 01:33-0300\n"
+"POT-Creation-Date: 2026-07-06 01:45-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: wp_image_optimizer.php:92
@@ -57,8 +56,8 @@ msgid ""
 "A communication error occurred with the server. Optimization was interrupted."
 msgstr ""
 
-#: wp_image_optimizer.php:101
-msgid "🚀 Start Bulk Optimization"
+#: wp_image_optimizer.php:101 wp_image_optimizer.php:766
+msgid "Start Bulk Optimization"
 msgstr ""
 
 #: wp_image_optimizer.php:102
@@ -245,7 +244,7 @@ msgid "Applies optimization to automatically created thumbnails as well."
 msgstr ""
 
 #: wp_image_optimizer.php:757
-msgid "💾 Save Settings"
+msgid "Save Settings"
 msgstr ""
 
 #: wp_image_optimizer.php:763
@@ -256,10 +255,6 @@ msgstr ""
 msgid ""
 "Click the button below to optimize all images already existing in the media "
 "library."
-msgstr ""
-
-#: wp_image_optimizer.php:766
-msgid "Start Bulk Optimization"
 msgstr ""
 
 #: wp_image_optimizer.php:769

@@ -53,8 +53,8 @@ msgid "A communication error occurred with the server. Optimization was interrup
 msgstr "サーバーとの通信エラーが発生しました。最適化は中断されました。"
 
 #: wp_image_optimizer.php:101
-msgid "🚀 Start Bulk Optimization"
-msgstr "🚀 一括最適化を開始"
+msgid "Start Bulk Optimization"
+msgstr "一括最適化を開始"
 
 #: wp_image_optimizer.php:102
 msgid "Optimized:"
@@ -233,8 +233,8 @@ msgid "Applies optimization to automatically created thumbnails as well."
 msgstr "自動作成されたサムネイルにも最適化を適用します。"
 
 #: wp_image_optimizer.php:728
-msgid "💾 Save Settings"
-msgstr "💾 設定を保存"
+msgid "Save Settings"
+msgstr "設定を保存"
 
 #: wp_image_optimizer.php:734
 msgid "Optimize Existing Images"
@@ -243,10 +243,6 @@ msgstr "既存の画像を最適化"
 #: wp_image_optimizer.php:735
 msgid "Click the button below to optimize all images already existing in the media library."
 msgstr "以下のボタンをクリックして、メディアライブラリに既存するすべての画像を最適化します。"
-
-#: wp_image_optimizer.php:737
-msgid "Start Bulk Optimization"
-msgstr "一括最適化を開始"
 
 #: wp_image_optimizer.php:740
 msgid "Optimizing images..."

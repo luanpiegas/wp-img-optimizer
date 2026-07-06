@@ -53,8 +53,8 @@ msgid "A communication error occurred with the server. Optimization was interrup
 msgstr "Une erreur de communication avec le serveur s'est produite. L'optimisation a été interrompue."
 
 #: wp_image_optimizer.php:101
-msgid "🚀 Start Bulk Optimization"
-msgstr "🚀 Lancer l'optimisation par lots"
+msgid "Start Bulk Optimization"
+msgstr "Lancer l'optimisation par lots"
 
 #: wp_image_optimizer.php:102
 msgid "Optimized:"
@@ -233,8 +233,8 @@ msgid "Applies optimization to automatically created thumbnails as well."
 msgstr "Applique également l'optimisation aux miniatures créées automatiquement."
 
 #: wp_image_optimizer.php:728
-msgid "💾 Save Settings"
-msgstr "💾 Enregistrer les paramètres"
+msgid "Save Settings"
+msgstr "Enregistrer les paramètres"
 
 #: wp_image_optimizer.php:734
 msgid "Optimize Existing Images"
@@ -243,10 +243,6 @@ msgstr "Optimiser les images existantes"
 #: wp_image_optimizer.php:735
 msgid "Click the button below to optimize all images already existing in the media library."
 msgstr "Cliquez sur le bouton ci-dessous pour optimiser toutes les images déjà présentes dans la médiathèque."
-
-#: wp_image_optimizer.php:737
-msgid "Start Bulk Optimization"
-msgstr "Lancer l'optimisation par lots"
 
 #: wp_image_optimizer.php:740
 msgid "Optimizing images..."

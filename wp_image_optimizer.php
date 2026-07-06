@@ -98,7 +98,7 @@ class ImageOptimizerAdvanced
                     'batch_done'        => __('Batch optimization completed successfully!', 'image-optimizer'),
                     'batch_done_errors' => __('Batch optimization completed with errors.', 'image-optimizer'),
                     'comm_error'        => __('A communication error occurred with the server. Optimization was interrupted.', 'image-optimizer'),
-                    'start_button'      => __('🚀 Start Bulk Optimization', 'image-optimizer'),
+                    'start_button'      => __('Start Bulk Optimization', 'image-optimizer'),
                     'optimized_label'   => __('Optimized:', 'image-optimizer'),
                     'remaining_label'   => __('Remaining:', 'image-optimizer'),
                     'optimize_error'    => __('Error optimizing:', 'image-optimizer'),
@@ -639,10 +639,10 @@ class ImageOptimizerAdvanced
         $logs = array_slice(get_option('img_optimizer_logs', array()), -10); // Últimos 10 logs
 ?>
         <div class="wrap">
-            <h1>🚀 <?php esc_html_e('Advanced Image Optimizer', 'image-optimizer'); ?></h1>
+            <h1><?php esc_html_e('Advanced Image Optimizer', 'image-optimizer'); ?></h1>
 
             <div class="card" style="margin-bottom: 20px;">
-                <h2>📊 <?php esc_html_e('Statistics', 'image-optimizer'); ?></h2>
+                <h2><?php esc_html_e('Statistics', 'image-optimizer'); ?></h2>
                 <p><strong><?php esc_html_e('Total images optimized:', 'image-optimizer'); ?></strong> <?php echo number_format($stats['total_optimized']); ?></p>
                 <p><strong><?php esc_html_e('Space saved:', 'image-optimizer'); ?></strong> <?php echo esc_html($this->format_bytes($stats['bytes_saved'])); ?></p>
                 <p><strong><?php esc_html_e('Last update:', 'image-optimizer'); ?></strong> <?php echo esc_html(date('d/m/Y H:i:s', $stats['last_reset'])); ?></p>
@@ -660,7 +660,7 @@ class ImageOptimizerAdvanced
 
                 <table class="form-table">
                     <tr>
-                        <th scope="row">🎛️ <?php esc_html_e('Quality (%)', 'image-optimizer'); ?></th>
+                        <th scope="row"><?php esc_html_e('Quality (%)', 'image-optimizer'); ?></th>
                         <td>
                             <input type="number" name="img_optimizer_quality" value="<?php echo esc_attr($settings['quality']); ?>" min="1" max="100" />
                             <p class="description"><?php esc_html_e('Compression quality (1-100). Lower value = higher compression.', 'image-optimizer'); ?></p>
@@ -668,7 +668,7 @@ class ImageOptimizerAdvanced
                     </tr>
 
                     <tr>
-                        <th scope="row">📐 <?php esc_html_e('Enable Resizing', 'image-optimizer'); ?></th>
+                        <th scope="row"><?php esc_html_e('Enable Resizing', 'image-optimizer'); ?></th>
                         <td>
                             <label for="img_optimizer_enable_resize">
                                 <input type="checkbox" id="img_optimizer_enable_resize" name="img_optimizer_enable_resize" value="1" <?php checked('1', $settings['enable_resize']); ?> />
@@ -679,7 +679,7 @@ class ImageOptimizerAdvanced
                     </tr>
 
                     <tr>
-                        <th scope="row">📏 <?php esc_html_e('Maximum Width (px)', 'image-optimizer'); ?></th>
+                        <th scope="row"><?php esc_html_e('Maximum Width (px)', 'image-optimizer'); ?></th>
                         <td>
                             <input type="number" id="max-width-field" name="img_optimizer_max_width" value="<?php echo esc_attr($settings['max_width']); ?>" min="100" max="8000" />
                             <p class="description"><?php esc_html_e('Maximum width in pixels (100-8000).', 'image-optimizer'); ?></p>
@@ -687,7 +687,7 @@ class ImageOptimizerAdvanced
                     </tr>
 
                     <tr>
-                        <th scope="row">📏 <?php esc_html_e('Maximum Height (px)', 'image-optimizer'); ?></th>
+                        <th scope="row"><?php esc_html_e('Maximum Height (px)', 'image-optimizer'); ?></th>
                         <td>
                             <input type="number" id="max-height-field" name="img_optimizer_max_height" value="<?php echo esc_attr($settings['max_height']); ?>" min="100" max="8000" />
                             <p class="description"><?php esc_html_e('Maximum height in pixels (100-8000).', 'image-optimizer'); ?></p>
@@ -695,7 +695,7 @@ class ImageOptimizerAdvanced
                     </tr>
 
                     <tr>
-                        <th scope="row">💾 <?php esc_html_e('Create Backup', 'image-optimizer'); ?></th>
+                        <th scope="row"><?php esc_html_e('Create Backup', 'image-optimizer'); ?></th>
                         <td>
                             <label for="img_optimizer_backup">
                                 <input type="checkbox" id="img_optimizer_backup" name="img_optimizer_backup" value="1" <?php checked('1', $settings['backup']); ?> />
@@ -706,14 +706,14 @@ class ImageOptimizerAdvanced
                     </tr>
 
                     <tr>
-                        <th scope="row">🌐 <?php esc_html_e('Generate WebP', 'image-optimizer'); ?></th>
+                        <th scope="row"><?php esc_html_e('Generate WebP', 'image-optimizer'); ?></th>
                         <td>
                             <label for="img_optimizer_webp">
                                 <input type="checkbox" id="img_optimizer_webp" name="img_optimizer_webp" value="1" <?php checked('1', $settings['webp']); ?> <?php if (!function_exists('imagewebp')) echo 'disabled'; ?> />
                                 <?php esc_html_e('Generate WebP versions of images', 'image-optimizer'); ?>
                             </label>
                             <?php if (!function_exists('imagewebp')): ?>
-                                <p class="description" style="color: red;">⚠️ <?php esc_html_e('imagewebp() function not available on the server.', 'image-optimizer'); ?></p>
+                                <p class="description" style="color: red;"><?php esc_html_e('imagewebp() function not available on the server.', 'image-optimizer'); ?></p>
                             <?php else: ?>
                                 <p class="description"><?php esc_html_e('Creates optimized WebP versions for modern browsers.', 'image-optimizer'); ?></p>
                             <?php endif; ?>
@@ -721,7 +721,7 @@ class ImageOptimizerAdvanced
                     </tr>
 
                     <tr>
-                        <th scope="row">🚀 <?php esc_html_e('Serve WebP Images', 'image-optimizer'); ?></th>
+                        <th scope="row"><?php esc_html_e('Serve WebP Images', 'image-optimizer'); ?></th>
                         <td>
                             <label for="img_optimizer_serve_webp">
                                 <input type="checkbox" id="img_optimizer_serve_webp" name="img_optimizer_serve_webp" value="1" <?php checked('1', $settings['serve_webp']); ?> />
@@ -732,7 +732,7 @@ class ImageOptimizerAdvanced
                     </tr>
 
                     <tr>
-                        <th scope="row">⚡ <?php esc_html_e('Asynchronous Processing', 'image-optimizer'); ?></th>
+                        <th scope="row"><?php esc_html_e('Asynchronous Processing', 'image-optimizer'); ?></th>
                         <td>
                             <label for="img_optimizer_async">
                                 <input type="checkbox" id="img_optimizer_async" name="img_optimizer_async" value="1" <?php checked('1', $settings['async']); ?> />
@@ -743,7 +743,7 @@ class ImageOptimizerAdvanced
                     </tr>
 
                     <tr>
-                        <th scope="row">🖼️ <?php esc_html_e('Optimize Thumbnails', 'image-optimizer'); ?></th>
+                        <th scope="row"><?php esc_html_e('Optimize Thumbnails', 'image-optimizer'); ?></th>
                         <td>
                             <label for="img_optimizer_thumbnails">
                                 <input type="checkbox" id="img_optimizer_thumbnails" name="img_optimizer_thumbnails" value="1" <?php checked('1', $settings['thumbnails']); ?> />
@@ -754,16 +754,16 @@ class ImageOptimizerAdvanced
                     </tr>
                 </table>
 
-                <?php submit_button(__('💾 Save Settings', 'image-optimizer')); ?>
+                <?php submit_button(__('Save Settings', 'image-optimizer')); ?>
             </form>
 
             <hr>
 
             <div class="card">
-                <h2>🔄 <?php esc_html_e('Optimize Existing Images', 'image-optimizer'); ?></h2>
+                <h2><?php esc_html_e('Optimize Existing Images', 'image-optimizer'); ?></h2>
                 <p><?php esc_html_e('Click the button below to optimize all images already existing in the media library.', 'image-optimizer'); ?></p>
                 <button type="button" class="button button-primary" id="optimize-existing">
-                    🚀 <?php esc_html_e('Start Bulk Optimization', 'image-optimizer'); ?>
+                    <?php esc_html_e('Start Bulk Optimization', 'image-optimizer'); ?>
                 </button>
                 <div id="optimization-progress" style="display:none; margin-top: 15px;">
                     <p><?php esc_html_e('Optimizing images...', 'image-optimizer'); ?> <span id="progress-text">0%</span></p>
@@ -774,7 +774,7 @@ class ImageOptimizerAdvanced
 
             <?php if (!empty($logs)): ?>
                 <div class="card" style="margin-top: 20px;">
-                    <h2>📝 <?php esc_html_e('Recent Logs', 'image-optimizer'); ?></h2>
+                    <h2><?php esc_html_e('Recent Logs', 'image-optimizer'); ?></h2>
                     <div style="max-height: 300px; overflow-y: auto; background: #f5f5f5; padding: 10px; border-radius: 5px;">
                         <?php foreach (array_reverse($logs) as $log): ?>
                             <div style="margin-bottom: 5px; padding: 5px; border-left: 3px solid <?php echo $log['level'] === 'error' ? '#dc3545' : ($log['level'] === 'warning' ? '#ffc107' : '#28a745'); ?>; background: white;">
