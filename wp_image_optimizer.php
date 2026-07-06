@@ -16,6 +16,9 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+define('IMG_OPT_PLUGIN_FILE', __FILE__);
+define('IMG_OPT_PLUGIN_URL', plugin_dir_url(__FILE__));
+
 // Carrega as classes do plugin (sem autoloader por ser um plugin simples)
 require_once __DIR__ . '/src/Settings.php';
 require_once __DIR__ . '/src/Stats.php';
@@ -138,7 +141,36 @@ final class ImageOptimizerPlugin
     {
         $this->settings->register();
     }
+
+    /**
+     * Hook register_deactivation_hook: limpa transientes e cron agendados.
+     */
+    public function on_deactivate(): void
+    {
+        // Remove eventos cron pendentes do hook async
+        $crons = _get_cron_array();
+        if (is_array($crons)) {
+            foreach ($crons as $timestamp => $cron) {
+                if (isset($cron[Optimizer::ASYNC_HOOK])) {
+                    foreach ($cron[Optimizer::ASYNC_HOOK] as $key => $data) {
+                        wp_unschedule_event($timestamp, Optimizer::ASYNC_HOOK, $data['args']);
+                    }
+                }
+            }
+        }
+
+        // Limpa transientes de fila e rate-limit por usuário (best-effort)
+        global $wpdb;
+        $wpdb->query(
+            "DELETE FROM {$wpdb->options}
+             WHERE option_name LIKE '\_transient\_img\_opt\_%'
+                OR option_name LIKE '\_transient\_timeout\_img\_opt\_%'"
+        );
+    }
 }
 
 // Inicializa o plugin
-ImageOptimizerPlugin::get_instance();
+$plugin = ImageOptimizerPlugin::get_instance();
+
+// Limpa transientes e cron na desativação
+register_deactivation_hook(__FILE__, array($plugin, 'on_deactivate'));

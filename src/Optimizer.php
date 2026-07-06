@@ -139,6 +139,11 @@ final class Optimizer
         $settings      = $this->settings->all();
         $original_size = filesize($file_path);
 
+        // Backup deve ocorrer ANTES de qualquer modificação no arquivo
+        if ($settings['backup'] === '1') {
+            $this->backup($file_path);
+        }
+
         $restored = $this->bump_memory();
         $image    = $this->load($file_path, $mime_type);
         if ($image === false) {
@@ -155,10 +160,6 @@ final class Optimizer
 
         if ($restored) {
             ini_set('memory_limit', $restored);
-        }
-
-        if ($settings['backup'] === '1') {
-            $this->backup($file_path);
         }
 
         clearstatcache();
