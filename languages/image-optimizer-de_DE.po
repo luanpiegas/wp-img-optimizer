@@ -108,21 +108,41 @@ msgstr "Einstellungen erfolgreich gespeichert!"
 msgid "Statistics have been reset!"
 msgstr "Statistik zurückgesetzt!"
 
-#: wp_image_optimizer.php:616
-msgid "Statistics"
-msgstr "Statistik"
+#: wp_image_optimizer.php:697
+msgid "Server Status"
+msgstr "Serverstatus"
 
-#: wp_image_optimizer.php:617
-msgid "Total images optimized:"
-msgstr "Optimierte Bilder gesamt:"
+#: wp_image_optimizer.php:701
+msgid "GD Extension"
+msgstr "GD-Erweiterung"
 
-#: wp_image_optimizer.php:618
-msgid "Space saved:"
-msgstr "Gesparter Speicherplatz:"
+#: wp_image_optimizer.php:705
+msgid "WebP Support"
+msgstr "WebP-Unterstützung"
 
-#: wp_image_optimizer.php:619
-msgid "Last update:"
-msgstr "Letzte Aktualisierung:"
+#: wp_image_optimizer.php:686
+msgid "Images optimized"
+msgstr "Optimierte Bilder"
+
+#: wp_image_optimizer.php:690
+msgid "Space saved"
+msgstr "Gesparter Speicherplatz"
+
+#: wp_image_optimizer.php:693
+msgid "Last reset"
+msgstr "Letzter Reset"
+
+#: wp_image_optimizer.php:712
+msgid "Compression"
+msgstr "Kompression"
+
+#: wp_image_optimizer.php:766
+msgid "WebP"
+msgstr "WebP"
+
+#: wp_image_optimizer.php:810
+msgid "Advanced"
+msgstr "Erweitert"
 
 #: wp_image_optimizer.php:623
 msgid "Are you sure you want to reset the statistics?"

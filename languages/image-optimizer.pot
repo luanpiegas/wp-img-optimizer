@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Advanced Image Optimizer 2.1.0\n"
 "Report-Msgid-Bugs-To: https://seusite.com\n"
-"POT-Creation-Date: 2026-07-06 01:45-0300\n"
+"POT-Creation-Date: 2026-07-06 01:57-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -56,7 +56,7 @@ msgid ""
 "A communication error occurred with the server. Optimization was interrupted."
 msgstr ""
 
-#: wp_image_optimizer.php:101 wp_image_optimizer.php:766
+#: wp_image_optimizer.php:101 wp_image_optimizer.php:834
 msgid "Start Bulk Optimization"
 msgstr ""
 
@@ -76,208 +76,228 @@ msgstr ""
 msgid "Unknown error."
 msgstr ""
 
-#: wp_image_optimizer.php:195
+#: wp_image_optimizer.php:236
 msgid "GD extension not found"
 msgstr ""
 
-#: wp_image_optimizer.php:203
+#: wp_image_optimizer.php:244
 #, php-format
 msgid "Insufficient memory: %s"
 msgstr ""
 
-#: wp_image_optimizer.php:259
+#: wp_image_optimizer.php:300
 #, php-format
 msgid "Rate limit reached for user %d"
 msgstr ""
 
-#: wp_image_optimizer.php:274
+#: wp_image_optimizer.php:315
 #, php-format
 msgid "Invalid file: %s"
 msgstr ""
 
-#: wp_image_optimizer.php:462
+#: wp_image_optimizer.php:503
 #, php-format
 msgid "Image optimized: %1$s - %2$s%% reduction (%3$s saved)"
 msgstr ""
 
-#: wp_image_optimizer.php:563 wp_image_optimizer.php:642
+#: wp_image_optimizer.php:604 wp_image_optimizer.php:683
 msgid "Advanced Image Optimizer"
 msgstr ""
 
-#: wp_image_optimizer.php:564
+#: wp_image_optimizer.php:605
 msgid "Image Optimizer"
 msgstr ""
 
-#: wp_image_optimizer.php:619
+#: wp_image_optimizer.php:660
 msgid "Settings saved successfully!"
 msgstr ""
 
-#: wp_image_optimizer.php:633
+#: wp_image_optimizer.php:674
 msgid "Statistics have been reset!"
 msgstr ""
 
-#: wp_image_optimizer.php:645
-msgid "Statistics"
+#: wp_image_optimizer.php:688
+msgid "Images optimized"
 msgstr ""
 
-#: wp_image_optimizer.php:646
-msgid "Total images optimized:"
+#: wp_image_optimizer.php:692
+msgid "Space saved"
 msgstr ""
 
-#: wp_image_optimizer.php:647
-msgid "Space saved:"
-msgstr ""
-
-#: wp_image_optimizer.php:648
-msgid "Last update:"
-msgstr ""
-
-#: wp_image_optimizer.php:652
-msgid "Are you sure you want to reset the statistics?"
-msgstr ""
-
-#: wp_image_optimizer.php:653
-msgid "Reset Statistics"
-msgstr ""
-
-#: wp_image_optimizer.php:663
-msgid "Quality (%)"
-msgstr ""
-
-#: wp_image_optimizer.php:666
-msgid "Compression quality (1-100). Lower value = higher compression."
-msgstr ""
-
-#: wp_image_optimizer.php:671
-msgid "Enable Resizing"
-msgstr ""
-
-#: wp_image_optimizer.php:675
-msgid "Resize images automatically"
-msgstr ""
-
-#: wp_image_optimizer.php:677
-msgid "If checked, images will be resized according to the maximum dimensions."
-msgstr ""
-
-#: wp_image_optimizer.php:682
-msgid "Maximum Width (px)"
-msgstr ""
-
-#: wp_image_optimizer.php:685
-msgid "Maximum width in pixels (100-8000)."
-msgstr ""
-
-#: wp_image_optimizer.php:690
-msgid "Maximum Height (px)"
-msgstr ""
-
-#: wp_image_optimizer.php:693
-msgid "Maximum height in pixels (100-8000)."
-msgstr ""
-
-#: wp_image_optimizer.php:698
-msgid "Create Backup"
+#: wp_image_optimizer.php:696
+msgid "Last reset"
 msgstr ""
 
 #: wp_image_optimizer.php:702
-msgid "Create backup of original images"
+msgid "Are you sure you want to reset the statistics?"
 msgstr ""
 
-#: wp_image_optimizer.php:704
-msgid "Saves a copy of the original image before optimization."
+#: wp_image_optimizer.php:703
+msgid "Reset Statistics"
 msgstr ""
 
-#: wp_image_optimizer.php:709
-msgid "Generate WebP"
+#: wp_image_optimizer.php:707
+msgid "Server Status"
 msgstr ""
 
-#: wp_image_optimizer.php:713
-msgid "Generate WebP versions of images"
+#: wp_image_optimizer.php:711
+msgid "GD Extension"
 msgstr ""
 
-#: wp_image_optimizer.php:716
-msgid "imagewebp() function not available on the server."
+#: wp_image_optimizer.php:715
+msgid "WebP Support"
 msgstr ""
 
-#: wp_image_optimizer.php:718
-msgid "Creates optimized WebP versions for modern browsers."
+#: wp_image_optimizer.php:722
+msgid "Compression"
 msgstr ""
 
-#: wp_image_optimizer.php:724
-msgid "Serve WebP Images"
+#: wp_image_optimizer.php:725
+msgid "Quality (%)"
 msgstr ""
 
 #: wp_image_optimizer.php:728
+msgid "Compression quality (1-100). Lower value = higher compression."
+msgstr ""
+
+#: wp_image_optimizer.php:732
+msgid "Enable Resizing"
+msgstr ""
+
+#: wp_image_optimizer.php:738
+msgid "Resize images automatically"
+msgstr ""
+
+#: wp_image_optimizer.php:739
+msgid "If checked, images will be resized according to the maximum dimensions."
+msgstr ""
+
+#: wp_image_optimizer.php:743
+msgid "Maximum Width (px)"
+msgstr ""
+
+#: wp_image_optimizer.php:746
+msgid "Maximum width in pixels (100-8000)."
+msgstr ""
+
+#: wp_image_optimizer.php:750
+msgid "Maximum Height (px)"
+msgstr ""
+
+#: wp_image_optimizer.php:753
+msgid "Maximum height in pixels (100-8000)."
+msgstr ""
+
+#: wp_image_optimizer.php:757
+msgid "Create Backup"
+msgstr ""
+
+#: wp_image_optimizer.php:763
+msgid "Create backup of original images"
+msgstr ""
+
+#: wp_image_optimizer.php:764
+msgid "Saves a copy of the original image before optimization."
+msgstr ""
+
+#: wp_image_optimizer.php:768
+msgid "Optimize Thumbnails"
+msgstr ""
+
+#: wp_image_optimizer.php:774
+msgid "Optimize thumbnails generated by WordPress"
+msgstr ""
+
+#: wp_image_optimizer.php:775
+msgid "Applies optimization to automatically created thumbnails as well."
+msgstr ""
+
+#: wp_image_optimizer.php:780
+msgid "WebP"
+msgstr ""
+
+#: wp_image_optimizer.php:783
+msgid "Generate WebP"
+msgstr ""
+
+#: wp_image_optimizer.php:789
+msgid "Generate WebP versions of images"
+msgstr ""
+
+#: wp_image_optimizer.php:791
+msgid "imagewebp() function not available on the server."
+msgstr ""
+
+#: wp_image_optimizer.php:793
+msgid "Creates optimized WebP versions for modern browsers."
+msgstr ""
+
+#: wp_image_optimizer.php:798
+msgid "Serve WebP Images"
+msgstr ""
+
+#: wp_image_optimizer.php:804
 msgid "Serve WebP images automatically"
 msgstr ""
 
-#: wp_image_optimizer.php:730
+#: wp_image_optimizer.php:805
 msgid ""
 "If enabled, the plugin will modify the page HTML to serve .webp versions of "
 "images to compatible browsers. Requires the \"Generate WebP\" option to be "
 "active."
 msgstr ""
 
-#: wp_image_optimizer.php:735
+#: wp_image_optimizer.php:810
+msgid "Advanced"
+msgstr ""
+
+#: wp_image_optimizer.php:813
 msgid "Asynchronous Processing"
 msgstr ""
 
-#: wp_image_optimizer.php:739
+#: wp_image_optimizer.php:819
 msgid "Process images in the background"
 msgstr ""
 
-#: wp_image_optimizer.php:741
+#: wp_image_optimizer.php:820
 msgid "Optimizes images using WP Cron to avoid blocking uploads."
 msgstr ""
 
-#: wp_image_optimizer.php:746
-msgid "Optimize Thumbnails"
-msgstr ""
-
-#: wp_image_optimizer.php:750
-msgid "Optimize thumbnails generated by WordPress"
-msgstr ""
-
-#: wp_image_optimizer.php:752
-msgid "Applies optimization to automatically created thumbnails as well."
-msgstr ""
-
-#: wp_image_optimizer.php:757
+#: wp_image_optimizer.php:825
 msgid "Save Settings"
 msgstr ""
 
-#: wp_image_optimizer.php:763
+#: wp_image_optimizer.php:831
 msgid "Optimize Existing Images"
 msgstr ""
 
-#: wp_image_optimizer.php:764
+#: wp_image_optimizer.php:832
 msgid ""
 "Click the button below to optimize all images already existing in the media "
 "library."
 msgstr ""
 
-#: wp_image_optimizer.php:769
+#: wp_image_optimizer.php:837
 msgid "Optimizing images..."
 msgstr ""
 
-#: wp_image_optimizer.php:777
+#: wp_image_optimizer.php:847
 msgid "Recent Logs"
 msgstr ""
 
-#: wp_image_optimizer.php:857 wp_image_optimizer.php:1012
+#: wp_image_optimizer.php:940 wp_image_optimizer.php:1096
 msgid "None"
 msgstr ""
 
-#: wp_image_optimizer.php:904 wp_image_optimizer.php:1004
+#: wp_image_optimizer.php:988 wp_image_optimizer.php:1088
 msgid "Permission denied."
 msgstr ""
 
-#: wp_image_optimizer.php:912
+#: wp_image_optimizer.php:996
 msgid "No images found."
 msgstr ""
 
-#: wp_image_optimizer.php:1027
+#: wp_image_optimizer.php:1111
 #, php-format
 msgid "File not found for ID: %d"
 msgstr ""
